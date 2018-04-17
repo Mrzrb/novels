@@ -336,7 +336,8 @@ class Document
         }
 
         try {
-            $content = file_get_contents($filename);
+            $content = GetHttpsCurl::to($filename);
+            // $content = file_get_contents($filename);
         } catch (\Exception $exception) {
             throw new RuntimeException(sprintf('Could not load file %s', $filename));
         }
@@ -461,13 +462,13 @@ class Document
     {
         switch (get_class($node)) {
             case 'DOMElement':
-                return new Element($node);
+            return new Element($node);
 
             case 'DOMText':
-                return $node->data;
+            return $node->data;
 
             case 'DOMAttr':
-                return $node->value;
+            return $node->value;
         }
 
         throw new InvalidArgumentException(sprintf('Unknown node type "%s"', get_class($node)));

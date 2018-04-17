@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'NovelController@list');
+Route::get('/detail/{chapter}', 'NovelController@detail');
